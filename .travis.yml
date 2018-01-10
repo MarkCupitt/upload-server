@@ -24,4 +24,4 @@ deploy:
   env: upload-server-prod
   bucket_name: elasticbeanstalk-eu-west-1-020767569921
   on:
-    repo: Confrer/upload
+    repo: Confrer/upload-server
