@@ -1,0 +1,11 @@
+{
+  "server": {
+    "port": 8070
+  },
+  "winston": {
+    "level": "debug",
+    "console": {
+      "colorize": true
+    }
+  }
+}
