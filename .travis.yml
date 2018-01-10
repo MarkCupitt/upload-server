@@ -14,3 +14,14 @@ notifications:
 branches:
   only:
   - master
+deploy:
+  provider: elasticbeanstalk
+  access_key_id: AKIAJR7XCPLJGKCFVTVA
+  secret_access_key:
+    secure: QhKrCRaybMzOxk6OCWy6tvKvMG/4HwFoH1v7OErPZ24xdVEhwjQalAcjLwF0kllBNGTy3BrA9Huay26WHe3a7Pm4tQcQKmVdtk1XEkmUG6XhVjKOMLUKua2cc8bnLY5YtuoS6CbhktOn61twaGcxobu5onS8+wFkrNxso0xSkDmYME36VgT1NVcmP6O4pD5FyINL7ygZ/Y9M1rXktm+3TzQKIcuQKingC70KssKo417mWknNsPEocQMz/++6j0WzGD6iSXEeUkFZIHEpQ9nObLDPQKu3NdVR3UwYxxrSmMKGs7Uaffvp8hh/rsugUZzLDtdyGl6Oe++SVb0wzdhPQcZ9+tbJqdHktr2fFuVkKEYOI8ks+hhNdrOEVWIYLD/v86Wz/EWKijgHg8X3Zpr7zqZLInV++QBqgayisXRCI8NJKfz7RTQIXUDKq9NSbr0REGap0cdoKi+B0kYN6OHactReW733wlkv6VgDT3MduKU/eN/0H7r1yEjGMyHurLokvHmhub0g0Afau8JfMMNUnw6r4vInN5LnOHx7H5FaYyc358fLPqmj7W0//DG1KIjmBJRavN38kx/VUEKUQ8itgrUpB9EqONtojL98XMF43rlaUyrXWqvdeYIjkOnBYyeP41CHBcsht7myp+QV9hdSNfTJtLLmntD9jJjNR9n9Dpc=
+  region: eu-west-1
+  app: upload-server
+  env: upload-server-prod
+  bucket_name: elasticbeanstalk-eu-west-1-020767569921
+  on:
+    repo: Confrer/upload
