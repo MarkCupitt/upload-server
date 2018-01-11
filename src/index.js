@@ -24,7 +24,7 @@ const s3Config = config.get("s3");
 const s3 = new AWS.S3({ logger, region: s3Config.region });
 
 async function upload({ buffer, mimetype }) {
-  if (process.env !== "production") {
+  if (process.env.NODE_ENV !== "production") {
     logger.debug("upload: Uploaded file");
     return "https://assets.confrere.com/image";
   }
