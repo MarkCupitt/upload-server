@@ -9,12 +9,19 @@ const readFile = require("fs-readfile-promise");
 
 const serverConfig = config.get("server");
 
-async function uploadImage({ imageBuffer, filename, imageHeight, imageWidth }) {
+async function uploadImage({
+  imageBuffer,
+  filename,
+  imageHeight,
+  imageWidth,
+  resizeStrategy = "centre",
+}) {
   const form = new FormData();
 
   form.append("image", imageBuffer, filename);
   form.append("imageHeight", imageHeight);
   form.append("imageWidth", imageWidth);
+  form.append("resizeStrategy", resizeStrategy);
   return axios
     .post(`http://localhost:${serverConfig.port}/image`, form, {
       headers: form.getHeaders(),
@@ -32,6 +39,18 @@ describe("IntegrationTests", () => {
         imageBuffer,
         imageHeight: 150,
         imageWidth: 150,
+      });
+      assert(url);
+    });
+
+    it("should successfully upload a png with max strategy", async () => {
+      const imageBuffer = await readFile("./src/tests/fixtures/image.png");
+      const url = await uploadImage({
+        filename: "filename.png",
+        imageBuffer,
+        imageHeight: 150,
+        imageWidth: 150,
+        resizeStrategy: "max",
       });
       assert(url);
     });
