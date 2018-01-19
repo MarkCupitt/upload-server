@@ -87,7 +87,11 @@ app.get("/", async (req, res) => {
 app.post("/image", imageUpload.single("image"), async (req, res) => {
   const {
     file,
-    body: { imageHeight: imageHeightString, imageWidth: imageWidthString },
+    body: {
+      imageHeight: imageHeightString,
+      imageWidth: imageWidthString,
+      resizeStrategy = "centre",
+    },
   } = req;
   const imageHeight = parseInt(imageHeightString, 10);
   const imageWidth = parseInt(imageWidthString, 10);
@@ -105,11 +109,20 @@ app.post("/image", imageUpload.single("image"), async (req, res) => {
   }
 
   try {
-    const processedImageBuffer = await sharp(file.buffer)
-      .resize(imageWidth, imageHeight)
-      .toBuffer();
+    const resizedImage = await sharp(file.buffer).resize(
+      imageWidth,
+      imageHeight,
+    );
+
+    let processedImage;
+    if (resizeStrategy === "max") {
+      processedImage = resizedImage.max();
+    } else {
+      processedImage = resizedImage.crop(resizeStrategy);
+    }
+
     const url = await upload({
-      buffer: processedImageBuffer,
+      buffer: processedImage.toBuffer(),
       mimetype: file.mimetype,
     });
     res.json({ url });
