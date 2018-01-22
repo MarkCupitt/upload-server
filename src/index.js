@@ -109,10 +109,7 @@ app.post("/image", imageUpload.single("image"), async (req, res) => {
   }
 
   try {
-    const resizedImage = await sharp(file.buffer).resize(
-      imageWidth,
-      imageHeight,
-    );
+    const resizedImage = sharp(file.buffer).resize(imageWidth, imageHeight);
 
     let processedImage;
     if (resizeStrategy === "max") {
@@ -122,7 +119,7 @@ app.post("/image", imageUpload.single("image"), async (req, res) => {
     }
 
     const url = await upload({
-      buffer: processedImage.toBuffer(),
+      buffer: await processedImage.toBuffer(),
       mimetype: file.mimetype,
     });
     res.json({ url });
