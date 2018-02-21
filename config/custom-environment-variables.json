@@ -1,5 +1,10 @@
 {
   "server": {
     "port": "PORT"
+  },
+  "s3": {
+    "bucket": "S3_BUCKET_ID",
+    "region": "AWS_REGION",
+    "cdnUrl": "CDN_URL"
   }
 }
