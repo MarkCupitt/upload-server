@@ -22,7 +22,7 @@
     "node": ">=8"
   },
   "author": "Confrere AS",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "private": true,
   "lint-staged": {
     "*.js": [
