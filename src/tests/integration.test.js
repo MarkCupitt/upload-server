@@ -77,7 +77,7 @@ describe("IntegrationTests", () => {
         });
         assert(null);
       } catch (e) {
-        return null;
+        // noop
       }
     });
   });
